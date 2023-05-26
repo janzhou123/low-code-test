@@ -8,7 +8,9 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
-    "start": "nest start",
+    "start": "turbo run dev",
+    "start:lowcode": "nest start",
+    "start:devops": "nest start devops",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/low-code-test2/main",
@@ -24,7 +26,8 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "turbo": "^1.9.9"
   },
   "devDependencies": {
     "@nestjs/schematics": "^9.0.0",
@@ -65,7 +68,11 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@comm/comm(|/.*)$": "<rootDir>/libs/comm/src/$1"
+    }
   }
 }
